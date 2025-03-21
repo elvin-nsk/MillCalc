@@ -1,8 +1,8 @@
 Attribute VB_Name = "MillCalc"
 '===============================================================================
-' Макрос           : MillCalc
-' Версия           : 2021.07.14
-' Автор            : elvin-nsk (me@elvin.nsk.ru)
+' РњР°РєСЂРѕСЃ           : MillCalc
+' Р’РµСЂСЃРёСЏ           : 2025.03.21
+' РђРІС‚РѕСЂ            : elvin-nsk (me@elvin.nsk.ru)
 '===============================================================================
 
 Option Explicit
@@ -10,22 +10,27 @@ Option Explicit
 Const RELEASE As Boolean = True
 
 '===============================================================================
+' # Manifest
+
+Public Const APP_NAME As String = "MillCalc"
+Public Const APP_DISPLAYNAME As String = APP_NAME
+Public Const APP_VERSION As String = "2025.03.21"
+
+'===============================================================================
 
 Sub Start()
 
   If RELEASE Then On Error GoTo Catch
   
-  If ActiveDocument Is Nothing Then
-    MsgBox "Нет активного документа"
-    Exit Sub
-  End If
+  Dim Shapes As ShapeRange
+  If Not InputData.ExpectShapes.Ok(Shapes) Then Exit Sub
   
   ActiveDocument.Unit = cdrMeter
   
   Dim Cfg As Config
   Set Cfg = Config.CreateAndLoad
-  Dim Parser As PageParser
-  Set Parser = PageParser.Create(ActivePage, Cfg.WorkpieceColors, Cfg.Processes)
+  Dim Parser As ShapesParser
+  Set Parser = ShapesParser.Create(Shapes, Cfg.WorkpieceColors, Cfg.Processes)
   Dim Calc As Calculator
   Set Calc = Calculator.Create(Parser, Cfg)
   Dim Text As TextGenerator
@@ -36,16 +41,16 @@ Sub Start()
   Exit Sub
 
 Catch:
-  VBA.MsgBox VBA.Err.Description, vbCritical, "Ошибка"
+  VBA.MsgBox VBA.Err.Description, vbCritical, "РћС€РёР±РєР°"
 
 End Sub
 
 Private Sub Presenter(ByVal Text As TextGenerator, _
-                      ByVal Parser As PageParser)
+                      ByVal Parser As ShapesParser)
   With New MainView
     If Parser.ElementsOutsideWorkpieces.Count > 0 Then
       .lbOutsideElements = _
-      Parser.ElementsOutsideWorkpieces.Count & " элементов за пределами заготовок"
+      Parser.ElementsOutsideWorkpieces.Count & " СЌР»РµРјРµРЅС‚РѕРІ Р·Р° РїСЂРµРґРµР»Р°РјРё Р·Р°РіРѕС‚РѕРІРѕРє"
       .lbOutsideElements.Visible = True
     End If
     .Output.Value = Text.ToString

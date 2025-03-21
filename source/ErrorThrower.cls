@@ -22,46 +22,46 @@ End Sub
 '===============================================================================
 
 Public Sub ErrorFileNotFound(ByVal File As String)
-  Throw "Не найден файл " & vbCrLf & _
+  Throw "РќРµ РЅР°Р№РґРµРЅ С„Р°Р№Р» " & vbCrLf & _
   File
 End Sub
 
 Public Sub ErrorReadingFile(ByVal FileName As String)
-  Throw "Ошибка чтения файла " & FileName
+  Throw "РћС€РёР±РєР° С‡С‚РµРЅРёСЏ С„Р°Р№Р»Р° " & FileName
 End Sub
 
 Public Sub ErrorCSV(ByVal FileName As String)
-  Throw "Ошибка структуры таблицы " & FileName
+  Throw "РћС€РёР±РєР° СЃС‚СЂСѓРєС‚СѓСЂС‹ С‚Р°Р±Р»РёС†С‹ " & FileName
 End Sub
 
 Public Sub ErrorCSVSize(ByVal FileName As String)
-  Throw "Мало строк в таблице " & FileName
+  Throw "РњР°Р»Рѕ СЃС‚СЂРѕРє РІ С‚Р°Р±Р»РёС†Рµ " & FileName
 End Sub
 
 Public Sub ErrorRecord(ByVal FileName As String, _
                              ByVal Row As Long)
-  Throw "Неверный тип данных в таблице" & vbCrLf & _
-        "Файл: " & FileName & vbCrLf & _
-        "Строка: " & VBA.CStr(Row)
+  Throw "РќРµРІРµСЂРЅС‹Р№ С‚РёРї РґР°РЅРЅС‹С… РІ С‚Р°Р±Р»РёС†Рµ" & vbCrLf & _
+        "Р¤Р°Р№Р»: " & FileName & vbCrLf & _
+        "РЎС‚СЂРѕРєР°: " & VBA.CStr(Row)
 End Sub
 
 Public Sub ErrorElementSize(ByVal FileName As String, _
                             ByVal Row1 As Long)
-  Throw "Размер элемента в таблице " & FileName & vbCrLf & _
-        "на строке " & Row1 & " больше, чем на следующий строке"
+  Throw "Р Р°Р·РјРµСЂ СЌР»РµРјРµРЅС‚Р° РІ С‚Р°Р±Р»РёС†Рµ " & FileName & vbCrLf & _
+        "РЅР° СЃС‚СЂРѕРєРµ " & Row1 & " Р±РѕР»СЊС€Рµ, С‡РµРј РЅР° СЃР»РµРґСѓСЋС‰РёР№ СЃС‚СЂРѕРєРµ"
 End Sub
 
 Public Sub ErrorColorInCSV(ByVal FileName As String, _
                              ByVal Row As Long, _
                              ByVal Col As Long)
-  Throw "Неверно задан цвет" & vbCrLf & _
-        "Файл: " & FileName & vbCrLf & _
-        "Строка: " & VBA.CStr(Row) & vbCrLf & _
-        "Столбец: " & VBA.CStr(Col)
+  Throw "РќРµРІРµСЂРЅРѕ Р·Р°РґР°РЅ С†РІРµС‚" & vbCrLf & _
+        "Р¤Р°Р№Р»: " & FileName & vbCrLf & _
+        "РЎС‚СЂРѕРєР°: " & VBA.CStr(Row) & vbCrLf & _
+        "РЎС‚РѕР»Р±РµС†: " & VBA.CStr(Col)
 End Sub
 
 Public Sub ErrorColorInINI(ByVal FileName As String)
-  Throw "Неверно задан цвет в файле " & FileName
+  Throw "РќРµРІРµСЂРЅРѕ Р·Р°РґР°РЅ С†РІРµС‚ РІ С„Р°Р№Р»Рµ " & FileName
 End Sub
 
 Public Sub Throw(ByVal Message As String)

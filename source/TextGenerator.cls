@@ -12,9 +12,9 @@ Option Explicit
 
 '===============================================================================
 
-Const LengthUnit As String = "м"
-Const TimeUnit As String = "мин."
-Const VelocityUnit As String = "м/мин."
+Const LengthUnit As String = "Рј"
+Const TimeUnit As String = "РјРёРЅ."
+Const VelocityUnit As String = "Рј/РјРёРЅ."
 
 Private Type typeThis
   Calculator As Calculator
@@ -45,22 +45,22 @@ Public Property Get ToString(Optional ByVal ValuesSeparator As String = vbTab, _
                              ) As String
   With This.Calculator
     ToString = ToString & _
-      "Время перемещения" & LinesSeparator & _
-      "Вид фрезеровки" & LinesSeparator & _
+      "Р’СЂРµРјСЏ РїРµСЂРµРјРµС‰РµРЅРёСЏ" & LinesSeparator & _
+      "Р’РёРґ С„СЂРµР·РµСЂРѕРІРєРё" & LinesSeparator & _
       NamesAndMovementTimes(ValuesSeparator, LinesSeparator, NumDigitsAfterDecimalToRound) & _
-      "ИТОГО:" & ValuesSeparator & VBA.Round(.TotalMovementTime, NumDigitsAfterDecimalToRound) & " " & TimeUnit & LinesSeparator & _
+      "РРўРћР“Рћ:" & ValuesSeparator & VBA.Round(.TotalMovementTime, NumDigitsAfterDecimalToRound) & " " & TimeUnit & LinesSeparator & _
       ParagraphsSeparator & _
-      "Время фрезеровки" & LinesSeparator & _
-      "Вид фрезеровки" & LinesSeparator & _
+      "Р’СЂРµРјСЏ С„СЂРµР·РµСЂРѕРІРєРё" & LinesSeparator & _
+      "Р’РёРґ С„СЂРµР·РµСЂРѕРІРєРё" & LinesSeparator & _
       NamesAndMillingTimes(ValuesSeparator, LinesSeparator, NumDigitsAfterDecimalToRound) & _
-      "ИТОГО:" & ValuesSeparator & VBA.Round(.TotalMillingTime, NumDigitsAfterDecimalToRound) & " " & TimeUnit & LinesSeparator & _
+      "РРўРћР“Рћ:" & ValuesSeparator & VBA.Round(.TotalMillingTime, NumDigitsAfterDecimalToRound) & " " & TimeUnit & LinesSeparator & _
       ParagraphsSeparator & _
-      "Снятие элементов" & ValuesSeparator & VBA.Round(.TotalRemovalTime, NumDigitsAfterDecimalToRound) & " " & TimeUnit & LinesSeparator & _
-      "Смена инструмента" & ValuesSeparator & VBA.Round(.TotalBeforeAndAfterProcessTime, NumDigitsAfterDecimalToRound) & " " & TimeUnit & LinesSeparator & _
-      "Подъём/опускание фрезы" & ValuesSeparator & VBA.Round(.TotalBeforeAndAfterElementTime, NumDigitsAfterDecimalToRound) & " " & TimeUnit & LinesSeparator & _
-      "Время установки заготовок" & ValuesSeparator & VBA.Round(.TotalInstallationTime, NumDigitsAfterDecimalToRound) & " " & TimeUnit & LinesSeparator & _
+      "РЎРЅСЏС‚РёРµ СЌР»РµРјРµРЅС‚РѕРІ" & ValuesSeparator & VBA.Round(.TotalRemovalTime, NumDigitsAfterDecimalToRound) & " " & TimeUnit & LinesSeparator & _
+      "РЎРјРµРЅР° РёРЅСЃС‚СЂСѓРјРµРЅС‚Р°" & ValuesSeparator & VBA.Round(.TotalBeforeAndAfterProcessTime, NumDigitsAfterDecimalToRound) & " " & TimeUnit & LinesSeparator & _
+      "РџРѕРґСЉС‘Рј/РѕРїСѓСЃРєР°РЅРёРµ С„СЂРµР·С‹" & ValuesSeparator & VBA.Round(.TotalBeforeAndAfterElementTime, NumDigitsAfterDecimalToRound) & " " & TimeUnit & LinesSeparator & _
+      "Р’СЂРµРјСЏ СѓСЃС‚Р°РЅРѕРІРєРё Р·Р°РіРѕС‚РѕРІРѕРє" & ValuesSeparator & VBA.Round(.TotalInstallationTime, NumDigitsAfterDecimalToRound) & " " & TimeUnit & LinesSeparator & _
       ParagraphsSeparator & _
-      "ИТОГОВОЕ ВРЕМЯ:" & ValuesSeparator & ToHoursAndMinutes(.TotalTime)
+      "РРўРћР“РћР’РћР• Р’Р Р•РњРЇ:" & ValuesSeparator & ToHoursAndMinutes(.TotalTime)
   End With
 
 End Property
@@ -72,7 +72,7 @@ End Property
 '===============================================================================
 
 Private Function ToHoursAndMinutes(ByVal Minutes As Long) As String
-  ToHoursAndMinutes = VBA.Fix(Minutes / 60) & " час. " & Minutes Mod 60 & " мин."
+  ToHoursAndMinutes = VBA.Fix(Minutes / 60) & " С‡Р°СЃ. " & Minutes Mod 60 & " РјРёРЅ."
 End Function
 
 Private Function NamesAndMovementTimes(ByVal ValuesSeparator As String, _

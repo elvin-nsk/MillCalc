@@ -1,0 +1,24 @@
+{
+    "Name": "elvin_MillCalc",
+    "StorageFileName": "elvin_MillCalc",
+    "Description": "",
+    "DocumentModuleName": "ThisMacroStorage",
+    "References": [
+        {
+            "Name": "stdole",
+            "Type": 0,
+            "GUID": "{00020430-0000-0000-C000-000000000046}",
+            "Major": 2,
+            "Minor": 0,
+            "FullPath": "C:\\Windows\\System32\\stdole2.tlb"
+        },
+        {
+            "Name": "MSForms",
+            "Type": 0,
+            "GUID": "{0D452EE1-E08F-101A-852E-02608C4D0BB4}",
+            "Major": 2,
+            "Minor": 0,
+            "FullPath": "C:\\Program Files\\Microsoft Office\\Root\\VFS\\System\\FM20.DLL"
+        }
+    ]
+}

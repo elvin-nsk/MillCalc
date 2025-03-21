@@ -19,6 +19,7 @@ Option Explicit
 '===============================================================================
 
 Private Sub UserForm_Initialize()
+  Caption = APP_DISPLAYNAME & " (v" & APP_VERSION & ")"
   Me.lbOutsideElements.Visible = False
 End Sub
 
@@ -28,7 +29,7 @@ End Sub
 
 '===============================================================================
 
-Private Sub FormŒ ()
+Private Sub Form–û–ö()
   Me.Hide
 End Sub
 
@@ -71,9 +72,9 @@ Private Sub CheckRangeLng(TextBox As MSForms.TextBox, ByVal Min As Long, Optiona
   End With
 End Sub
 
-Private Sub UserForm_QueryClose(—ancel As Integer, CloseMode As Integer)
+Private Sub UserForm_QueryClose(–°ancel As Integer, CloseMode As Integer)
   If CloseMode = VbQueryClose.vbFormControlMenu Then
-    —ancel = True
+    –°ancel = True
     FormCancel
   End If
 End Sub

@@ -13,7 +13,7 @@ Option Explicit
 '===============================================================================
 
 Private Type typeThis
-  PageParser As PageParser
+  ShapesParser As ShapesParser
   Config As Config
   Processes As Collection
   TotalMovementTime As Double
@@ -28,17 +28,17 @@ Private This As typeThis
 
 '===============================================================================
 
-Public Function Create(ByVal PageParser As PageParser, _
+Public Function Create(ByVal ShapesParser As ShapesParser, _
                        ByVal Config As Config) As Calculator
   With New Calculator
-    Set Create = .Init(PageParser, Config)
+    Set Create = .Init(ShapesParser, Config)
   End With
 End Function
 
-Friend Function Init(ByVal PageParser As PageParser, _
+Friend Function Init(ByVal ShapesParser As ShapesParser, _
                      ByVal Config As Config) As Calculator
   With This
-    Set .PageParser = PageParser
+    Set .ShapesParser = ShapesParser
     Set .Config = Config
     Set .Processes = Config.Processes
   End With
@@ -94,7 +94,7 @@ Private Sub Calc()
   
   With This
   
-    For Each Workpiece In .PageParser.Workpieces
+    For Each Workpiece In .ShapesParser.Workpieces
       PerWorkpiece
       For Each Bunch In Workpiece.ElementsBunches
         PerProcess
