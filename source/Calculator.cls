@@ -16,7 +16,6 @@ Private Type This
   ShapesParser As ShapesParser
   Config As Config
   Processes As Collection
-  TotalMovementTime As Double
   TotalMillingTime As Double
   TotalRemovalTime As Double
   TotalBeforeAndAfterProcessTime As Double
@@ -50,10 +49,6 @@ End Function
 
 Public Property Get Processes() As Collection
   Set Processes = This.Processes
-End Property
-
-Public Property Get TotalMovementTime() As Double
-  TotalMovementTime = This.TotalMovementTime
 End Property
 
 Public Property Get TotalMillingTime() As Double
@@ -105,12 +100,11 @@ Private Sub Calc()
     Next Workpiece
   
   .TotalTime = _
-    .TotalMovementTime _
-    + .TotalMillingTime _
-    + .TotalRemovalTime _
-    + .TotalBeforeAndAfterProcessTime _
-    + .TotalBeforeAndAfterElementTime _
-    + .TotalInstallationTime
+    .TotalMillingTime _
+  + .TotalRemovalTime _
+  + .TotalBeforeAndAfterProcessTime _
+  + .TotalBeforeAndAfterElementTime _
+  + .TotalInstallationTime
   
   End With
 
@@ -120,15 +114,10 @@ Private Sub PerElement(ByVal Element As IElement)
   Dim Size As ElementSize
   Set Size = SizeOf(Element)
   Dim MillingTime As Double
-  Dim MovementTime As Double
   With This
     MillingTime = Element.Length / Element.Process.Velocity
-    MovementTime = Size.MovementTime
     Element.Process.SummaryMillingTime = Element.Process.SummaryMillingTime _
       + MillingTime
-    Element.Process.SummaryMovementTime = Element.Process.SummaryMovementTime _
-      + MovementTime
-    .TotalMovementTime = .TotalMovementTime + MovementTime
     .TotalMillingTime = .TotalMillingTime + MillingTime
     If Element.Process.Removal Then _
       .TotalRemovalTime = .TotalRemovalTime _

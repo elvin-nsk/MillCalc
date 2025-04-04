@@ -45,11 +45,6 @@ Public Property Get ToString(Optional ByVal ValuesSeparator As String = vbTab, _
                              ) As String
   With This.Calculator
     ToString = ToString & _
-      "Время перемещения" & LinesSeparator & _
-      "Вид фрезеровки" & LinesSeparator & _
-      NamesAndMovementTimes(ValuesSeparator, LinesSeparator, NumDigitsAfterDecimalToRound) & _
-      "ИТОГО:" & ValuesSeparator & VBA.Round(.TotalMovementTime, NumDigitsAfterDecimalToRound) & " " & TimeUnit & LinesSeparator & _
-      ParagraphsSeparator & _
       "Время фрезеровки" & LinesSeparator & _
       "Вид фрезеровки" & LinesSeparator & _
       NamesAndMillingTimes(ValuesSeparator, LinesSeparator, NumDigitsAfterDecimalToRound) & _

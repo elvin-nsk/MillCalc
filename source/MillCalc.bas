@@ -1,7 +1,7 @@
 Attribute VB_Name = "MillCalc"
 '===============================================================================
 ' Макрос           : MillCalc
-' Версия           : 2025.03.21
+' Версия           : 2025.04.04
 ' Автор            : elvin-nsk (me@elvin.nsk.ru)
 '===============================================================================
 
@@ -14,7 +14,7 @@ Const RELEASE As Boolean = True
 
 Public Const APP_NAME As String = "MillCalc"
 Public Const APP_DISPLAYNAME As String = APP_NAME
-Public Const APP_VERSION As String = "2025.03.21"
+Public Const APP_VERSION As String = "2025.04.04"
 
 '===============================================================================
 
