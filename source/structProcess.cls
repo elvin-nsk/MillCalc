@@ -2,7 +2,7 @@ VERSION 1.0 CLASS
 BEGIN
   MultiUse = -1  'True
 END
-Attribute VB_Name = "structProcess"
+Attribute VB_Name = "StructProcess"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = False
@@ -20,6 +20,6 @@ Public SummaryMovementTime As Double
 
 '===============================================================================
 
-Public Property Get Self() As structProcess
+Public Property Get Self() As StructProcess
   Set Self = Me
 End Property

@@ -12,7 +12,7 @@ Option Explicit
 
 '===============================================================================
 
-Private Type typeThis
+Private Type This
   Shapes As ShapeRange
   WorkpieceColors As Collection
   Processes As Collection
@@ -21,7 +21,7 @@ Private Type typeThis
   InvalidShapes As ShapeRange
   ElementsOutsideWorkpieces As Collection
 End Type
-Private This As typeThis
+Private This As This
 
 '===============================================================================
 
@@ -99,7 +99,7 @@ Private Function ProcessShapeAsWorkpiece(ByVal Shape As Shape) As Boolean
   With This
     If Not ShapeIsVaidWorkpiece(Shape) Then Exit Function
     If ColorMatchCollection(Shape.Outline.Color, .WorkpieceColors) Then
-      With New structWorkpiece
+      With New StructWorkpiece
         Set .Shape = Shape
         Set .ElementsBunches = New Collection
         This.Workpieces.Add .Self
@@ -116,7 +116,7 @@ Private Function ProcessShapeAsElementSubPath(ByVal Shape As Shape) As Boolean
       .InvalidShapes.Add Shape
       Exit Function
     End If
-    Dim Process As structProcess
+    Dim Process As StructProcess
     For Each Process In .Processes
       If ColorMatchCollection(Shape.Outline.Color, Process.Colors) Then
         AddToElementsAsElementSubPath Shape, Process
@@ -128,7 +128,7 @@ Private Function ProcessShapeAsElementSubPath(ByVal Shape As Shape) As Boolean
 End Function
 
 Private Sub AddToElementsAsElementSubPath(ByVal Shape As Shape, _
-                                          ByVal Process As structProcess)
+                                          ByVal Process As StructProcess)
   With This
     Dim SubPath As SubPath
     For Each SubPath In Shape.Curve.SubPaths
@@ -170,7 +170,7 @@ End Function
 
 Private Sub SortElementIntoWorkpiece(ByVal Element As IElement)
   With This
-    Dim Workpiece As structWorkpiece
+    Dim Workpiece As StructWorkpiece
     For Each Workpiece In .Workpieces
       If IsOverlaps(Element.BBox, Workpiece.Shape.BoundingBox) Then
         FindOrAddElementsBunch(Element, Workpiece).Elements.Add Element
@@ -182,9 +182,9 @@ Private Sub SortElementIntoWorkpiece(ByVal Element As IElement)
 End Sub
 
 Private Function FindOrAddElementsBunch(ByVal Element As IElement, _
-                                        ByVal Workpiece As structWorkpiece _
-                                        ) As structElementsBunch
-  Dim Bunch As structElementsBunch
+                                        ByVal Workpiece As StructWorkpiece _
+                                        ) As StructElementsBunch
+  Dim Bunch As StructElementsBunch
   For Each Bunch In Workpiece.ElementsBunches
     If Bunch.Process Is Element.Process Then
       Set FindOrAddElementsBunch = Bunch
@@ -196,8 +196,8 @@ Private Function FindOrAddElementsBunch(ByVal Element As IElement, _
   Workpiece.ElementsBunches.Add FindOrAddElementsBunch
 End Function
 
-Private Function CreateElementsBunch() As structElementsBunch
-  With New structElementsBunch
+Private Function CreateElementsBunch() As StructElementsBunch
+  With New StructElementsBunch
     Set .Elements = New Collection
     Set CreateElementsBunch = .Self
   End With

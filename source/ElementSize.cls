@@ -12,13 +12,13 @@ Option Explicit
 
 '===============================================================================
 
-Private Type typeThis
+Private Type This
   SizeRangeFrom As Double
   SizeRangeTo As Double
   MovementTime As Double
   RemovalTime As Double
 End Type
-Private This As typeThis
+Private This As This
 
 '===============================================================================
 

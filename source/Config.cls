@@ -19,13 +19,13 @@ Option Explicit
 
 Private Const iniFileName As String = "elvin_MillCalc.ini"
 
-Private Type typeThis
+Private Type This
   SourceDataFolder As String
   ConstantsFileName As String
   ProcessesFileName As String
   ElementSizesFileName As String
 End Type
-Private This As typeThis
+Private This As This
 
 '===============================================================================
 
@@ -84,13 +84,13 @@ End Sub
 
 Private Sub ReadConstants()
 
-  Dim File As IFilePath
+  Dim File As FileSpec
   Set File = GetFilePathFromDataFolder(This.ConstantsFileName)
-  If Not FileExist(File.File) Then ErrorThrower.ErrorFileNotFound File.File
+  If Not FileExist(File) Then ErrorThrower.ErrorFileNotFound File
 
   With iniFile.Create
     
-    .File = File.File
+    .File = File
     .Action = iniRead
     
     .Section = "Workpiece"
@@ -113,7 +113,7 @@ End Sub
 
 Private Sub ReadProcesses()
 
-  Dim File As IFilePath
+  Dim File As FileSpec
   Set File = GetFilePathFromDataFolder(This.ProcessesFileName)
   
   Dim Csv As Collection
@@ -138,7 +138,7 @@ End Sub
 
 Private Sub ReadElementSizes()
 
-  Dim File As IFilePath
+  Dim File As FileSpec
   Set File = GetFilePathFromDataFolder(This.ElementSizesFileName)
   
   Dim Csv As Collection
@@ -181,8 +181,8 @@ Catch:
   ErrorThrower.ErrorColorInINI This.ConstantsFileName
 End Sub
 
-Private Function ReadProcessesRecord(ByVal Record As Collection) As structProcess
-  With New structProcess
+Private Function ReadProcessesRecord(ByVal Record As Collection) As StructProcess
+  With New StructProcess
     .Name = Record(1)
     .Removal = VBA.CBool(Record(2))
     .Velocity = VBA.CDbl(Record(3))
@@ -206,10 +206,10 @@ Private Function ReadElementSizesRecord(ByVal Index As Long, _
       ElementSize.Create(Csv(Index)(1), NextSize, Csv(Index)(2), Csv(Index)(3))
 End Function
 
-Private Function ReadCSV(ByVal File As IFilePath) As Collection
+Private Function ReadCSV(ByVal File As FileSpec) As Collection
   On Error GoTo Catch
   With CsvUtils.Create(";")
-    Set ReadCSV = .ParseCsvToCollection(LoadStrFromFile(File.File), True)
+    Set ReadCSV = .ParseCsvToCollection(LoadStrFromFile(File), True)
   End With
   On Error GoTo 0
   Exit Function
@@ -217,8 +217,8 @@ Catch:
   ErrorThrower.ErrorCSV File.Name
 End Function
 
-Private Function GetFilePathFromDataFolder(ByVal FileName As String) As IFilePath
-  With FilePath.Create
+Private Function GetFilePathFromDataFolder(ByVal FileName As String) As FileSpec
+  With FileSpec.New_
     .Name = FileName
     .Path = This.SourceDataFolder
     Set GetFilePathFromDataFolder = .Self
@@ -252,13 +252,13 @@ Private Function FileExist(ByVal File As String) As Boolean
 End Function
 
 Private Function LoadStrFromFile(ByVal File As String) As String
-  Dim tFileNum&: tFileNum = VBA.FreeFile
+  Dim FileNum&: FileNum = VBA.FreeFile
   On Error GoTo Catch
-  Open File For Input As #tFileNum
-  LoadStrFromFile = Input(LOF(tFileNum), tFileNum)
-  Close #tFileNum
+  Open File For Input As #FileNum
+  LoadStrFromFile = Input(LOF(FileNum), FileNum)
+  Close #FileNum
   On Error GoTo 0
   Exit Function
 Catch:
-  ErrorThrower.ErrorReadingFile FilePath.Create(File).Name
+  ErrorThrower.ErrorReadingFile FileSpec.New_(File).Name
 End Function

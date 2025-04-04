@@ -12,7 +12,7 @@ Option Explicit
 
 '===============================================================================
 
-Private Type typeThis
+Private Type This
   ShapesParser As ShapesParser
   Config As Config
   Processes As Collection
@@ -24,7 +24,7 @@ Private Type typeThis
   TotalInstallationTime As Double
   TotalTime As Double
 End Type
-Private This As typeThis
+Private This As This
 
 '===============================================================================
 
@@ -88,8 +88,8 @@ End Property
 
 Private Sub Calc()
   
-  Dim Workpiece As structWorkpiece
-  Dim Bunch As structElementsBunch
+  Dim Workpiece As StructWorkpiece
+  Dim Bunch As StructElementsBunch
   Dim Element As IElement
   
   With This

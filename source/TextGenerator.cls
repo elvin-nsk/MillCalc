@@ -16,10 +16,10 @@ Const LengthUnit As String = "м"
 Const TimeUnit As String = "мин."
 Const VelocityUnit As String = "м/мин."
 
-Private Type typeThis
+Private Type This
   Calculator As Calculator
 End Type
-Private This As typeThis
+Private This As This
 
 '===============================================================================
 
@@ -79,7 +79,7 @@ Private Function NamesAndMovementTimes(ByVal ValuesSeparator As String, _
                                        ByVal LinesSeparator As String, _
                                        ByVal NumDigitsAfterDecimalToRound _
                                        ) As String
-  Dim Process As structProcess
+  Dim Process As StructProcess
   For Each Process In This.Calculator.Processes
     With Process
       NamesAndMovementTimes = NamesAndMovementTimes & _
@@ -92,7 +92,7 @@ Private Function NamesAndMillingTimes(ByVal ValuesSeparator As String, _
                                       ByVal LinesSeparator As String, _
                                       ByVal NumDigitsAfterDecimalToRound _
                                       ) As String
-  Dim Process As structProcess
+  Dim Process As StructProcess
   For Each Process In This.Calculator.Processes
     With Process
       NamesAndMillingTimes = NamesAndMillingTimes & _

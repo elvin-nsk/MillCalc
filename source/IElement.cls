@@ -12,7 +12,7 @@ Option Explicit
 
 '===============================================================================
 
-Public Property Get Process() As structProcess
+Public Property Get Process() As StructProcess
 End Property
 
 Public Property Get BBox() As Rect

@@ -14,18 +14,18 @@ Implements IElement
 
 '===============================================================================
 
-Private Type typeThis
-  Process As structProcess
+Private Type This
+  Process As StructProcess
   BBox As Rect
   MaxSize As Double
   Length As Double
 End Type
-Private This As typeThis
+Private This As This
 
 '===============================================================================
 
 Public Function Create(ByVal SubPath As SubPath, _
-                       ByVal Process As structProcess _
+                       ByVal Process As StructProcess _
                        ) As IElement
   With New ElementSubPath
     Set Create = .Init(SubPath, Process)
@@ -33,7 +33,7 @@ Public Function Create(ByVal SubPath As SubPath, _
 End Function
 
 Friend Function Init(ByVal SubPath As SubPath, _
-                     ByVal Process As structProcess _
+                     ByVal Process As StructProcess _
                      ) As IElement
   With This
     Set .Process = Process
@@ -44,7 +44,7 @@ End Function
 
 '===============================================================================
 
-Private Property Get IElement_Process() As structProcess
+Private Property Get IElement_Process() As StructProcess
   Set IElement_Process = This.Process
 End Property
 
